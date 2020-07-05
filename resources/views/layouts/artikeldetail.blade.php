@@ -1,36 +1,47 @@
 @extends('layouts/master')
 
+
+
+
+
+
 @section('content')
+<div class="card" >
 <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Judul</th>
-                      <th>Isi</th>
-                      <th>Slug</th>
-                      <th>Tag</th>
-                      <th>id User</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
+           
+                
                   @foreach($artikel as $s)
-                    <tr>
-                      <td>{{$loop->iteration}}</td>
-                      <td>{{$s->judul}}</td>
-                      <td>{{$s->isi}}</td>
-                      <td>{{$s->slug}}</td>
-                      <td>{{$s->tag}}</td>
-                      <td>{{$s->iduser}}</td>
+                
+                  <div class="row">
+  <div class="col-9">
+  <h3 style="font-weight:bold">Judul :{{$s->judul}}</h3>  
+  <br>
+  <h3>Slug :{{$s->slug}}</h3>              
+  <br>
+  <h3>Isi :{{$s->isi}}</h3>         
+  <br>
+ 
+<?php 
+    $tag = $s->tag;
+    $tag1 = explode(",",strtolower($tag));
+
+    for($i=0;$i<count($tag1);$i++){?>
+<button class="btn btn-success">{{$tag1[$i]}}</button>
+  <?php  }
+
+?>
                      
-                    </tr>
+                      <br>
+                      
+  </div> 
+  <div class="col-3">
+   </div> 
+</div>
+            
+                     
+
                     @endforeach
-                    </tbody>
-                    </table>
-              </div>
-            </div>
+                    
+              </div></div>
+            
 @endsection
-
-

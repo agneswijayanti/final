@@ -2,41 +2,40 @@
 
 @section('content')
 <div class="card-body">
-              <div class="table-responsive">
-              <form method="GET" action="/artikel/create">
+<form method="GET" action="/artikel/create">
       
        
 
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Tambah">
-        </div>
-    </form>
-                
+      <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Tambah">
+      </div>
+  </form>
+              <div class="table-responsive">
+              
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Judul</th>
+                      <th>Isi</th>
+                      <th>Slug</th>
+                      <th>Tag</th>
+                      <th>id User</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @foreach($artikel as $s)
-                  <hr >
-                  <div class="row">
-  <div class="col-9">
-  <h3>Judul :{{$s->judul}}</h3>  
-  <br>
-  <h3>Isi :{{$s->isi}}</h3>         
-  <br>
-  <h3>Slug :{{$s->slug}}</h3>                <td></td>
-  <br>
-<?php 
-    $tag = $s->tag;
-    $tag1 = explode(",",strtolower($tag));
+                    <tr>
+                      <td>{{$loop->iteration}}</td>
+                      <td>{{$s->judul}}</td>
+                      <td>{{$s->isi}}</td>
+                      <td>{{$s->slug}}</td>
+                      <td>{{$s->tag}}</td>
+                      <td>{{$s->iduser}}</td>
 
-    for($i=0;$i<count($tag1);$i++){?>
-<button class="btn btn-success">{{$tag1[$i]}}</button>
-  <?php  }
-
-?>
-                     
-                      <br>
-                      
-  </div> 
-  <div class="col-3">
-  <form method="POST" action="/artikel/{{$s->id}}">
+                     <td>
+                     <form method="POST" action="/artikel/{{$s->id}}">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
 
@@ -46,23 +45,38 @@
     </form>
 
     <form method="GET" action="/artikel/{{$s->id}}/edit/">
-      
+    
        
 
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Edit">
         </div>
     </form>
-  </div> 
-</div>
-<hr >             
-                     
+    <form method="GET" action="/artikel/{{$s->id}}/">
+    
+       
 
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Detail">
+        </div>
+    </form>
+
+                     </td>
+                    </tr>
                     @endforeach
-                    
+                    </tbody>
+                    </table>
               </div>
             </div>
 @endsection
+
+
+
+
+
+
+
+
 
 
 @push('scripts')
