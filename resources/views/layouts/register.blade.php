@@ -1,20 +1,27 @@
 @extends('layouts/master')
 
 @section('content')
-<h1>Form Komentar Pertanyaan</h1>
-<form action="/komentar/{{$pertanyaan[0]->idpertanyaan}}/pertanyaan" method="POST">
+
+<form action="/register" method="POST">
 {{ csrf_field() }}
+{{ method_field('POST') }}
+  <div class="form-group">
+    <label for="username">username</label>
+    <input type="text" name="username"  class="form-control" id="judul" aria-describedby="emailHelp" >
+    
+  </div>
  
   <div class="form-group">
-    <label for="isi">ISI </label>
-    <textarea name="isi" id="isi" class="form-control" cols="30" rows="10"></textarea>
+    <label for="tag">password</label>
+    <input type="text" name="password"  class="form-control" id="tag" aria-describedby="emailHelp" >
   </div>
-  
   
  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection
+
+
 
 @push('scripts')
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
@@ -26,6 +33,3 @@
     });
 </script>
 @endpush
-
-
-

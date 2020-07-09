@@ -12,7 +12,7 @@
   </div>
   <div class="form-group">
     <label for="isi">ISI Pertanyaan</label>
-    <textarea name="isi" id="isi" class="form-control" cols="30" rows="10">{{$pertanyaan->isi}}</textarea>
+    <textarea name="isi" id="isi" class="form-control isi" cols="30" rows="10">{{$pertanyaan->isi}}</textarea>
   </div>
   <div class="form-group">
     <label for="tag">Tag</label>
@@ -26,3 +26,13 @@
 
 
 
+@push('scripts')
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.isi',
+        width: 900,
+        height: 300
+    });
+</script>
+@endpush
